@@ -96,3 +96,130 @@ nav{
   border: none;
   color: white;
 }
+.box{
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+.bigView{
+  width: 55%;
+  border-radius: inherit;
+}
+.configure{
+  width: 45%;
+  padding: 20px;
+}
+.title{
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+.des{
+  margin-top: 20px;
+  font-size: 15px;
+  color: rgb(101, 100, 100);
+}
+.form{
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs{
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.rate{
+  background-color: gold;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  margin-top: 20px;
+}
+
+.popBox{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background-color: rgba(186, 192, 244, 0.577);
+  height: 50%;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.421);
+  backdrop-filter: blur(3px);
+}
+
+.btns{
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+}
+
+.rateBtn{
+  color: white;
+  background-color: #EC9B98;
+  font-size: 22px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botBtn{
+  display: flex;
+  width: 100%;
+  justify-content: right;
+}
+
+.botBtn > button{
+  padding: 5px;
+  margin: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(224, 192, 8)
+}
+
+.search{
+  display: flex;
+  border: 2px solid #5787AE;
+  border-radius: 30px;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search > input{
+  border: none;
+  padding: 5px;
+}
+
+.search > input:focus{
+border: none;
+outline: none;
+}

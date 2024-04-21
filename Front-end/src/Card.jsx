@@ -1,72 +1,60 @@
-import { useState } from 'react'
-import ImageOne from './assets/image1.JPG';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import star from './assets/star.png';
+import { cardContext } from './App';
 
-function Card() {
-    const card = [
-      {
-        title: 'Kalinchowk',
-        image: ImageOne,
-        rating: 2,
-        reviews: "3.2k"
-      },
-      {
-        title: 'Kalinchowk',
-        image: ImageOne,
-        rating: 3,
-        reviews: "3.2k"
-      },
-      {
-        title: 'Kalinchowk',
-        image: ImageOne,
-        rating: 4,
-        reviews: "3.2k"
-      },
-      {
-        title: 'Kalinchowk',
-        image: ImageOne,
-        rating: 5,
-        reviews: "3.2k"
-      },
-      {
-        title: 'Kalinchowk',
-        image: ImageOne,
-        rating: 3,
-        reviews: "3.2k"
-      },
-      {
-        title: 'Kalinchowk',
-        image: ImageOne,
-        rating: 3,
-        reviews: "3.2k"
-      },
-    ];
-    const renderStars = (rating) => {
-        const stars = [];
-        for (let i = 0; i < rating; i++) {
-          stars.push(<img key={i} src={star} alt="star" className="star" />);
-        }
-        return stars;
-      };
-  
-    return (
-      <div className="card">
-        {card.map((item, index) => (
-          <div key={index} className="card-item">
-            <img src={item.image} alt={item.title} className="card-image" />
-            <div className="card-details">
-              <h2 className="card-title">{item.title}</h2>
-              <div className="card-rating">{renderStars(item.rating)}</div>
-              <div className="reviewCon">
+function Card({ search }) {
+  const [cards, setCards] = useState([]);
+  const [oneData, setOneData] = useContext(cardContext);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get('http://localhost:3000/content');
+        setCards(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const renderStars = (numerator, denominator) => {
+    if (denominator === 0) {
+      return <p>No rating till now</p>;
+    }
+
+    const averageRating = Math.floor(numerator / denominator);
+    const stars = [];
+    for (let i = 0; i < averageRating; i++) {
+      stars.push(<img key={i} src={star} alt="star" className="star" />);
+    }
+    return stars;
+  };
+
+  const filteredCards = search
+    ? cards.filter(item => item.title.toLowerCase().includes(search.toLowerCase()))
+    : cards;
+
+  return (
+    <div className="card">
+      {filteredCards.map((item, index) => (
+        <div key={index} className="card-item">
+          <img src={`data:image/jpeg;base64, ${item.imageData}`} alt={item.title} className="card-image" />
+          <div className="card-details">
+            <h2 className="card-title">{item.title}</h2>
+            <div className="card-rating">{renderStars(item.numerator, item.denominator)}</div>
+            <div className="reviewCon">
               <div className="card-reviews">{item.reviews} reviews</div>
-              <button className='book'>Book Now</button>
-              </div>
-              
+              <Link to={{ pathname: `/detailed/${index}` }} className='book' onClick={() => setOneData(item)}>Book Now</Link>
             </div>
           </div>
-        ))}
-      </div>
-    );
-  }
-  
-  export default Card;
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default Card;
