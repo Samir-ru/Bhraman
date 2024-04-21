@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import Booking from './Bookings';
 
 function App() {
   const [title, setTitle] = useState('');
@@ -36,12 +37,16 @@ function App() {
 
   return (
     <>
-        <form onSubmit={handleFormSubmit} encType='multipart/form-data' className='container'>
+    <div className="container">
+        <form onSubmit={handleFormSubmit} encType='multipart/form-data' className='left'>
+        <h1>Add visiting locaitons</h1>
           Title:<input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
           Image:<input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} />
           Description: <textarea name="description" value={description} onChange={(e) => setDescription(e.target.value)} cols="30" rows="10"></textarea>
           <button type='submit'>Post</button>
         </form>
+        <Booking/>
+    </div>
     </>
   );
 }

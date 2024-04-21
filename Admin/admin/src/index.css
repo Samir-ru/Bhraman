@@ -4,24 +4,28 @@
   box-sizing: border-box;
 }
 body{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  
+ padding: 50px;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.container{
+
+.left{
+  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight:  bold;
+ }
+.right{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+ }
+.container{
+  display: flex;
 }
-
 input{
-  padding: 5px;
+  padding: 10px;
   border: 2px solid rgb(98, 98, 212);
   border-radius: 5px;
 }
@@ -39,4 +43,29 @@ textarea{
   padding: 5px;
   border: 2px solid rgb(98, 98, 212);
   border-radius: 5px;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.booking-header {
+  background-color: #f2f2f2;
+  padding: 8px;
+  text-align: left;
+}
+
+.booking-table td, .booking-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.booking-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.booking-table tr:hover {
+  background-color: #ddd;
 }
